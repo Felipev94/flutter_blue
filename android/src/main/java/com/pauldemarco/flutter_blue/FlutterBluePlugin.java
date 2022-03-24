@@ -589,7 +589,9 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
                     characteristic = locateCharacteristic(gattServer, request.getServiceUuid(), request.getSecondaryServiceUuid(), request.getCharacteristicUuid());
                     cccDescriptor = characteristic.getDescriptor(CCCD_ID);
                     if(cccDescriptor == null) {
-                        throw new Exception("could not locate CCCD descriptor for characteristic: " +characteristic.getUuid().toString());
+                        //Some devices - including the widely used Bluno do not actually set the CCCD_ID.
+                        //thus setNotifications works perfectly (tested on Bluno) without cccDescriptor
+                        log(LogLevel.INFO, "could not locate CCCD descriptor for characteristic: " + characteristic.getUuid().toString());
                     }
                 } catch(Exception e) {
                     result.error("set_notification_error", e.getMessage(), null);
