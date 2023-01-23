@@ -4,9 +4,8 @@
 
 library flutter_blue;
 
-import 'dart:async/async.dart';
+import 'dart:async';
 
-import 'package:async/async.dart';
 import 'package:collection/collection.dart';
 import 'package:convert/convert.dart';
 import 'package:flutter/services.dart';
