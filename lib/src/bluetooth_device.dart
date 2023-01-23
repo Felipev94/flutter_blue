@@ -17,11 +17,29 @@ class BluetoothDevice {
   BehaviorSubject<bool> _isDiscoveringServices = BehaviorSubject.seeded(false);
   Stream<bool> get isDiscoveringServices => _isDiscoveringServices.stream;
 
+  /// Establishes a connection to the Bluetooth Device with onCancel event.
+  // Future<void> connectOperation({
+  //   Duration? timeout,
+  //   bool autoConnect = true,
+  // }) async {
+  //   CancelableOperation.fromFuture(
+  //     connect(
+  //       autoConnect: autoConnect,
+  //       timeout: timeout,
+  //     ),
+  //     onCancel: () {
+
+  //     },
+  //   );
+  // }
+
   /// Establishes a connection to the Bluetooth Device.
   Future<void> connect({
     Duration? timeout,
     bool autoConnect = true,
   }) async {
+    final completer = Completer<void>();
+
     var request = protos.ConnectRequest.create()
       ..remoteId = id.toString()
       ..androidAutoConnect = autoConnect;
@@ -30,7 +48,8 @@ class BluetoothDevice {
     if (timeout != null) {
       timer = Timer(timeout, () {
         disconnect();
-        throw TimeoutException('Failed to connect in time.', timeout);
+        completer.completeError(
+            TimeoutException('Failed to connect in time.', timeout));
       });
     }
 
@@ -41,7 +60,9 @@ class BluetoothDevice {
 
     timer?.cancel();
 
-    return;
+    completer.complete();
+
+    return completer.future;
   }
 
   /// Cancels connection to the Bluetooth Device
@@ -132,7 +153,7 @@ class BluetoothDevice {
         .invokeMethod('requestMtu', request.writeToBuffer());
   }
 
-   /// Request connection priority for a connected remote device
+  /// Request connection priority for a connected remote device
   Future<void> connectionPriority({required int priority}) async {
     var request = protos.ConnectionPriorityRequest.create()
       ..remoteId = id.toString()
@@ -142,24 +163,22 @@ class BluetoothDevice {
         .invokeMethod('requestConnectionPriority', request.writeToBuffer());
   }
 
- /// Read the RSSI for a connected remote device
+  /// Read the RSSI for a connected remote device
   Future<int> readRssi() async {
     final remoteId = id.toString();
-    await FlutterBlue.instance._channel
-        .invokeMethod('readRssi', remoteId);
+    await FlutterBlue.instance._channel.invokeMethod('readRssi', remoteId);
 
     return FlutterBlue.instance._methodStream
         .where((m) => m.method == "ReadRssiResult")
         .map((m) => m.arguments)
         .map((buffer) => protos.ReadRssiResult.fromBuffer(buffer))
-        .where((p) =>
-    (p.remoteId == remoteId))
+        .where((p) => (p.remoteId == remoteId))
         .first
         .then((c) {
       return (c.rssi);
     });
   }
-  
+
   /// Indicates whether the Bluetooth Device can send a write without response
   Future<bool> get canSendWriteWithoutResponse =>
       new Future.error(new UnimplementedError());
