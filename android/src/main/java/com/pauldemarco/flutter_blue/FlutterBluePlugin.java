@@ -351,7 +351,6 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
                     if(mDevices.get(deviceId).gatt.connect()){
                         result.success(null);
                     } else {
-                        mDevices.remove(deviceId).gatt.close();
                         result.error("reconnect_error", "error when reconnecting to device", null);
                     }
                     return;
@@ -378,7 +377,9 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
                 if(cache != null) {
                     BluetoothGatt gattServer = cache.gatt;
                     gattServer.disconnect();
-                    gattServer.close();
+                    if(state == BluetoothProfile.STATE_DISCONNECTED) {
+                        gattServer.close();
+                    }
                 }
                 result.success(null);
                 break;
