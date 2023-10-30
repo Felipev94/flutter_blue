@@ -222,3 +222,7 @@ message ConnectionPriorityRequest {
   string remote_id = 1;
   uint32 priority = 2;
 }
+
+message ClearGattCache {
+  string remote_id = 1;
+}

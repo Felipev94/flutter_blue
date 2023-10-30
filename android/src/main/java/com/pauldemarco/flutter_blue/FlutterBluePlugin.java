@@ -44,6 +44,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import java.lang.reflect.Method;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -735,6 +737,46 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
                 break;
             }
 
+            case "clearGattCache":
+            {
+               byte[] data = call.arguments();
+                Protos.ClearGattCache request;
+                try {
+                    request = Protos.ClearGattCache.newBuilder().mergeFrom(data).build();
+                } catch (InvalidProtocolBufferException e) {
+                    result.error("RuntimeException", e.getMessage(), e);
+                    break;
+                }
+
+                BluetoothGatt gatt;
+                
+                try {
+
+                    gatt = locateGatt(request.getRemoteId());
+                         
+                    if(gatt == null) {
+                        result.error("clearGattCache", "device is disconnected", null);
+                        break;
+                    }
+
+                    final Method refreshMethod = gatt.getClass().getMethod("refresh");
+                    if (refreshMethod == null) {
+                        result.error("clearGattCache", "unsupported on this android version", null);
+                        break;
+                    }
+
+                    refreshMethod.invoke(gatt);
+
+                    result.success(true);
+
+
+                   
+                } catch(Exception e) {
+                    result.error("clearGattCache", e.getMessage(), e);
+                }
+
+                break;
+            }
             default:
             {
                 result.notImplemented();

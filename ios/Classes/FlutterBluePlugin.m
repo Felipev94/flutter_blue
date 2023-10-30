@@ -263,19 +263,10 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
       result(e);
     }
   } else if([@"requestConnectionPriority" isEqualToString:call.method]) {
-      result([FlutterError errorWithCode:@"requestConnectionPriority" message:@"iOS does not allow connection priority requests to the peripheral" details:NULL]);
-    // FlutterStandardTypedData *data = [call arguments];
-    // ProtosConnectionPriorityRequest *request = [[ProtosConnectionPriorityRequest alloc] initWithData:[data data] error:nil];
-    // NSString *remoteId = [request remoteId];
-    //   @try {
-    //   CBPeripheral *peripheral = [self findPeripheral:remoteId];
-    //   NSUInteger priority = 2;
-    //   result([self toFlutterData:[self setDesiredConnectionLatency:peripheral priority:priority]]);
-    // } @catch(FlutterError *e) {
-    //   result(e);
-    // } 
-
-  } else {
+    result([FlutterError errorWithCode:@"requestConnectionPriority" message:@"iOS does not allow connection priority requests to the peripheral" details:NULL]);
+  } else if([@"clearGattCache" isEqualToString:call.method]) {
+    result([FlutterError errorWithCode:@"clearGattCache" message:@"iOS does not allow clear cache requests to the peripheral" details:NULL]);
+  }else {
     result(FlutterMethodNotImplemented);
   }
 }
