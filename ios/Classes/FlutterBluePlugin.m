@@ -266,7 +266,9 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
     result([FlutterError errorWithCode:@"requestConnectionPriority" message:@"iOS does not allow connection priority requests to the peripheral" details:NULL]);
   } else if([@"clearGattCache" isEqualToString:call.method]) {
     result([FlutterError errorWithCode:@"clearGattCache" message:@"iOS does not allow clear cache requests to the peripheral" details:NULL]);
-  }else {
+  } else if([@"closeGatt" isEqualToString:call.method]) {
+    result([FlutterError errorWithCode:@"closeGatt" message:@"iOS does not allow close gatt requests to the peripheral" details:NULL]);
+  } else {
     result(FlutterMethodNotImplemented);
   }
 }

@@ -393,16 +393,6 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
                 BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(deviceId);
                 int state = mBluetoothManager.getConnectionState(device, BluetoothProfile.GATT);
                 try {
-                    
-
-                    if (state == BluetoothProfile.STATE_DISCONNECTED) {
-                        BluetoothDeviceCache cache = mDevices.remove(deviceId);
-                        if(cache != null) { 
-                            BluetoothGatt gattServer = cache.gatt;
-                            gattServer.close();
-                        }
-                    }
-
                     result.success(ProtoMaker.from(device, state).toByteArray());
                 } catch(Exception e) {
                     result.error("device_state_error", e.getMessage(), e);
@@ -787,6 +777,38 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
 
                 break;
             }
+
+             case "closeGatt":
+            {
+               byte[] data = call.arguments();
+                Protos.ClearGattCache request;
+                try {
+                    request = Protos.ClearGattCache.newBuilder().mergeFrom(data).build();
+                } catch (InvalidProtocolBufferException e) {
+                    result.error("RuntimeException", e.getMessage(), e);
+                    break;
+                }
+
+                try {
+                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(request.getRemoteId());
+                    BluetoothDeviceCache cache = mDevices.remove(request.getRemoteId());
+
+                    if(cache != null) { 
+                        BluetoothGatt gattServer = cache.gatt;
+                        gattServer.close();
+                    } else {
+                        result.error("closeGatt", "device is not on cache", null);
+                    }
+
+                    result.success(null);
+                   
+                } catch(Exception e) {
+                    result.error("closeGatt", e.getMessage(), e);
+                }
+
+                break;
+            }
+
             default:
             {
                 result.notImplemented();

@@ -182,10 +182,19 @@ class BluetoothDevice {
   Future<bool> clearGattCache() async {
     final request = protos.ClearGattCache.create()..remoteId = id.toString();
 
-    final result = await FlutterBlue.instance._channel
+    await FlutterBlue.instance._channel
         .invokeMethod('clearGattCache', request.writeToBuffer());
 
     return true;
+  }
+
+  Future<void> closeGatt() async {
+    final request = protos.CloseGatt.create()..remoteId = id.toString();
+
+    await FlutterBlue.instance._channel
+        .invokeMethod('closeGatt', request.writeToBuffer());
+
+    return;
   }
 
   /// Indicates whether the Bluetooth Device can send a write without response

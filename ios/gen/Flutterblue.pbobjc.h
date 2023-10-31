@@ -820,6 +820,18 @@ GPB_FINAL @interface ProtosClearGattCache : GPBMessage
 
 @end
 
+#pragma mark - ProtosCloseGatt
+
+typedef GPB_ENUM(ProtosCloseGatt_FieldNumber) {
+  ProtosCloseGatt_FieldNumber_RemoteId = 1,
+};
+
+GPB_FINAL @interface ProtosCloseGatt : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *remoteId;
+
+@end
+
 NS_ASSUME_NONNULL_END
 
 CF_EXTERN_C_END

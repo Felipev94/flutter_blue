@@ -226,3 +226,7 @@ message ConnectionPriorityRequest {
 message ClearGattCache {
   string remote_id = 1;
 }
+
+message CloseGatt {
+  string remote_id = 1;
+}

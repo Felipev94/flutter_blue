@@ -42,6 +42,7 @@ GPBObjCClassDeclaration(ProtosBluetoothService);
 GPBObjCClassDeclaration(ProtosBluetoothState);
 GPBObjCClassDeclaration(ProtosCharacteristicProperties);
 GPBObjCClassDeclaration(ProtosClearGattCache);
+GPBObjCClassDeclaration(ProtosCloseGatt);
 GPBObjCClassDeclaration(ProtosConnectRequest);
 GPBObjCClassDeclaration(ProtosConnectedDevicesResponse);
 GPBObjCClassDeclaration(ProtosConnectionPriorityRequest);
@@ -2416,6 +2417,52 @@ typedef struct ProtosClearGattCache__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosClearGattCache__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown | GPBDescriptorInitializationFlag_ClosedEnumSupportKnown)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - ProtosCloseGatt
+
+@implementation ProtosCloseGatt
+
+@dynamic remoteId;
+
+typedef struct ProtosCloseGatt__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *remoteId;
+} ProtosCloseGatt__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    GPB_DEBUG_CHECK_RUNTIME_VERSIONS();
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "remoteId",
+        .dataTypeSpecific.clazz = Nil,
+        .number = ProtosCloseGatt_FieldNumber_RemoteId,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(ProtosCloseGatt__storage_, remoteId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:GPBObjCClass(ProtosCloseGatt)
+                                   messageName:@"CloseGatt"
+                               fileDescription:&ProtosFlutterblueRoot_FileDescription
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(ProtosCloseGatt__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown | GPBDescriptorInitializationFlag_ClosedEnumSupportKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");

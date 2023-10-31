@@ -2453,6 +2453,56 @@ class ClearGattCache extends $pb.GeneratedMessage {
   void clearRemoteId() => clearField(1);
 }
 
+class CloseGatt extends $pb.GeneratedMessage {
+  factory CloseGatt({
+    $core.String? remoteId,
+  }) {
+    final $result = create();
+    if (remoteId != null) {
+      $result.remoteId = remoteId;
+    }
+    return $result;
+  }
+  CloseGatt._() : super();
+  factory CloseGatt.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CloseGatt.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CloseGatt', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'remoteId')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  CloseGatt clone() => CloseGatt()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  CloseGatt copyWith(void Function(CloseGatt) updates) => super.copyWith((message) => updates(message as CloseGatt)) as CloseGatt;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CloseGatt create() => CloseGatt._();
+  CloseGatt createEmptyInstance() => create();
+  static $pb.PbList<CloseGatt> createRepeated() => $pb.PbList<CloseGatt>();
+  @$core.pragma('dart2js:noInline')
+  static CloseGatt getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CloseGatt>(create);
+  static CloseGatt? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get remoteId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set remoteId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasRemoteId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRemoteId() => clearField(1);
+}
+
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

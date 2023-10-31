@@ -588,3 +588,15 @@ const ClearGattCache$json = {
 final $typed_data.Uint8List clearGattCacheDescriptor = $convert.base64Decode(
     'Cg5DbGVhckdhdHRDYWNoZRIbCglyZW1vdGVfaWQYASABKAlSCHJlbW90ZUlk');
 
+@$core.Deprecated('Use closeGattDescriptor instead')
+const CloseGatt$json = {
+  '1': 'CloseGatt',
+  '2': [
+    {'1': 'remote_id', '3': 1, '4': 1, '5': 9, '10': 'remoteId'},
+  ],
+};
+
+/// Descriptor for `CloseGatt`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List closeGattDescriptor = $convert.base64Decode(
+    'CglDbG9zZUdhdHQSGwoJcmVtb3RlX2lkGAEgASgJUghyZW1vdGVJZA==');
+
