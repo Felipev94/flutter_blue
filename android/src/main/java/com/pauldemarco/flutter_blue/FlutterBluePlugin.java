@@ -809,6 +809,26 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
                 break;
             }
 
+            //   case "getConnectionState":
+            // {
+            //    String remoteId = (String)call.arguments;
+            //     BluetoothGatt gatt;
+            //     try {
+            //         gatt = locateGatt(remoteId);
+
+            //         gatt.get
+            //         if(gatt.readRemoteRssi()) {
+            //             result.success(null);
+            //         } else {
+            //             result.error("getConnectionState", "gatt.readRemoteRssi returned false", null);
+            //         }
+            //     } catch(Exception e) {
+            //         result.error("getConnectionState", e.getMessage(), e);
+            //     }
+
+            //     break;
+            // }
+
             default:
             {
                 result.notImplemented();

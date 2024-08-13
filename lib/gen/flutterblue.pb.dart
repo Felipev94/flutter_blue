@@ -2503,6 +2503,70 @@ class CloseGatt extends $pb.GeneratedMessage {
   void clearRemoteId() => clearField(1);
 }
 
+class GetConnectionState extends $pb.GeneratedMessage {
+  factory GetConnectionState({
+    $core.String? remoteId,
+    GetConnectionState_BluetoothDeviceState? state,
+  }) {
+    final $result = create();
+    if (remoteId != null) {
+      $result.remoteId = remoteId;
+    }
+    if (state != null) {
+      $result.state = state;
+    }
+    return $result;
+  }
+  GetConnectionState._() : super();
+  factory GetConnectionState.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetConnectionState.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetConnectionState', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'remoteId')
+    ..e<GetConnectionState_BluetoothDeviceState>(2, _omitFieldNames ? '' : 'state', $pb.PbFieldType.OE, defaultOrMaker: GetConnectionState_BluetoothDeviceState.DISCONNECTED, valueOf: GetConnectionState_BluetoothDeviceState.valueOf, enumValues: GetConnectionState_BluetoothDeviceState.values)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetConnectionState clone() => GetConnectionState()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetConnectionState copyWith(void Function(GetConnectionState) updates) => super.copyWith((message) => updates(message as GetConnectionState)) as GetConnectionState;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetConnectionState create() => GetConnectionState._();
+  GetConnectionState createEmptyInstance() => create();
+  static $pb.PbList<GetConnectionState> createRepeated() => $pb.PbList<GetConnectionState>();
+  @$core.pragma('dart2js:noInline')
+  static GetConnectionState getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetConnectionState>(create);
+  static GetConnectionState? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get remoteId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set remoteId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasRemoteId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRemoteId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  GetConnectionState_BluetoothDeviceState get state => $_getN(1);
+  @$pb.TagNumber(2)
+  set state(GetConnectionState_BluetoothDeviceState v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasState() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearState() => clearField(2);
+}
+
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

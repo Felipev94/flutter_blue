@@ -2,6 +2,8 @@
 // All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
@@ -176,7 +178,13 @@ class CharacteristicTile extends StatelessWidget {
       stream: characteristic.value,
       initialData: characteristic.lastValue,
       builder: (c, snapshot) {
-        final value = snapshot.data;
+        List value = snapshot.data ?? [];
+
+        if (value.isNotEmpty &&
+            characteristic.serviceUuid.toString().contains('5343')) {
+          value = value.reversed.take(2).toList();
+        }
+
         return ExpansionTile(
           title: ListTile(
             title: Column(

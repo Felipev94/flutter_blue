@@ -91,5 +91,24 @@ class DeviceStateResponse_BluetoothDeviceState extends $pb.ProtobufEnum {
   const DeviceStateResponse_BluetoothDeviceState._($core.int v, $core.String n) : super(v, n);
 }
 
+class GetConnectionState_BluetoothDeviceState extends $pb.ProtobufEnum {
+  static const GetConnectionState_BluetoothDeviceState DISCONNECTED = GetConnectionState_BluetoothDeviceState._(0, _omitEnumNames ? '' : 'DISCONNECTED');
+  static const GetConnectionState_BluetoothDeviceState CONNECTING = GetConnectionState_BluetoothDeviceState._(1, _omitEnumNames ? '' : 'CONNECTING');
+  static const GetConnectionState_BluetoothDeviceState CONNECTED = GetConnectionState_BluetoothDeviceState._(2, _omitEnumNames ? '' : 'CONNECTED');
+  static const GetConnectionState_BluetoothDeviceState DISCONNECTING = GetConnectionState_BluetoothDeviceState._(3, _omitEnumNames ? '' : 'DISCONNECTING');
+
+  static const $core.List<GetConnectionState_BluetoothDeviceState> values = <GetConnectionState_BluetoothDeviceState> [
+    DISCONNECTED,
+    CONNECTING,
+    CONNECTED,
+    DISCONNECTING,
+  ];
+
+  static final $core.Map<$core.int, GetConnectionState_BluetoothDeviceState> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static GetConnectionState_BluetoothDeviceState? valueOf($core.int value) => _byValue[value];
+
+  const GetConnectionState_BluetoothDeviceState._($core.int v, $core.String n) : super(v, n);
+}
+
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

@@ -600,3 +600,31 @@ const CloseGatt$json = {
 final $typed_data.Uint8List closeGattDescriptor = $convert.base64Decode(
     'CglDbG9zZUdhdHQSGwoJcmVtb3RlX2lkGAEgASgJUghyZW1vdGVJZA==');
 
+@$core.Deprecated('Use getConnectionStateDescriptor instead')
+const GetConnectionState$json = {
+  '1': 'GetConnectionState',
+  '2': [
+    {'1': 'remote_id', '3': 1, '4': 1, '5': 9, '10': 'remoteId'},
+    {'1': 'state', '3': 2, '4': 1, '5': 14, '6': '.GetConnectionState.BluetoothDeviceState', '10': 'state'},
+  ],
+  '4': [GetConnectionState_BluetoothDeviceState$json],
+};
+
+@$core.Deprecated('Use getConnectionStateDescriptor instead')
+const GetConnectionState_BluetoothDeviceState$json = {
+  '1': 'BluetoothDeviceState',
+  '2': [
+    {'1': 'DISCONNECTED', '2': 0},
+    {'1': 'CONNECTING', '2': 1},
+    {'1': 'CONNECTED', '2': 2},
+    {'1': 'DISCONNECTING', '2': 3},
+  ],
+};
+
+/// Descriptor for `GetConnectionState`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getConnectionStateDescriptor = $convert.base64Decode(
+    'ChJHZXRDb25uZWN0aW9uU3RhdGUSGwoJcmVtb3RlX2lkGAEgASgJUghyZW1vdGVJZBI+CgVzdG'
+    'F0ZRgCIAEoDjIoLkdldENvbm5lY3Rpb25TdGF0ZS5CbHVldG9vdGhEZXZpY2VTdGF0ZVIFc3Rh'
+    'dGUiWgoUQmx1ZXRvb3RoRGV2aWNlU3RhdGUSEAoMRElTQ09OTkVDVEVEEAASDgoKQ09OTkVDVE'
+    'lORxABEg0KCUNPTk5FQ1RFRBACEhEKDURJU0NPTk5FQ1RJTkcQAw==');
+

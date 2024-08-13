@@ -197,6 +197,28 @@ class BluetoothDevice {
     return;
   }
 
+  // Return the current connection state of the device
+  Future<BluetoothDeviceState> getConnectionState() async {
+    final remoteId = id.toString();
+
+    await FlutterBlue.instance._channel.invokeMethod(
+      'getConnectionState',
+      remoteId,
+    );
+
+    final currentBluetoothDeviceState = await FlutterBlue.instance._methodStream
+        .where((m) => m.method == "GetConnectionState")
+        .map((m) => m.arguments)
+        .map((buffer) => protos.GetConnectionState.fromBuffer(buffer))
+        .where((p) => (p.remoteId == remoteId))
+        .first
+        .then((c) {
+      return (c.state);
+    });
+
+    return BluetoothDeviceState.values[currentBluetoothDeviceState.value];
+  }
+
   /// Indicates whether the Bluetooth Device can send a write without response
   Future<bool> get canSendWriteWithoutResponse =>
       new Future.error(new UnimplementedError());

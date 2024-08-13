@@ -48,6 +48,7 @@ GPBObjCClassDeclaration(ProtosConnectedDevicesResponse);
 GPBObjCClassDeclaration(ProtosConnectionPriorityRequest);
 GPBObjCClassDeclaration(ProtosDeviceStateResponse);
 GPBObjCClassDeclaration(ProtosDiscoverServicesResult);
+GPBObjCClassDeclaration(ProtosGetConnectionState);
 GPBObjCClassDeclaration(ProtosInt32Value);
 GPBObjCClassDeclaration(ProtosMtuSizeRequest);
 GPBObjCClassDeclaration(ProtosMtuSizeResponse);
@@ -2463,6 +2464,52 @@ typedef struct ProtosCloseGatt__storage_ {
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosCloseGatt__storage_)
+                                         flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown | GPBDescriptorInitializationFlag_ClosedEnumSupportKnown)];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - ProtosGetConnectionState
+
+@implementation ProtosGetConnectionState
+
+@dynamic remoteId;
+
+typedef struct ProtosGetConnectionState__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *remoteId;
+} ProtosGetConnectionState__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    GPB_DEBUG_CHECK_RUNTIME_VERSIONS();
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "remoteId",
+        .dataTypeSpecific.clazz = Nil,
+        .number = ProtosGetConnectionState_FieldNumber_RemoteId,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(ProtosGetConnectionState__storage_, remoteId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldClearHasIvarOnZero),
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:GPBObjCClass(ProtosGetConnectionState)
+                                   messageName:@"GetConnectionState"
+                               fileDescription:&ProtosFlutterblueRoot_FileDescription
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(ProtosGetConnectionState__storage_)
                                          flags:(GPBDescriptorInitializationFlags)(GPBDescriptorInitializationFlag_UsesClassRefs | GPBDescriptorInitializationFlag_Proto3OptionalKnown | GPBDescriptorInitializationFlag_ClosedEnumSupportKnown)];
     #if defined(DEBUG) && DEBUG
       NSAssert(descriptor == nil, @"Startup recursed!");

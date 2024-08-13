@@ -230,3 +230,14 @@ message ClearGattCache {
 message CloseGatt {
   string remote_id = 1;
 }
+
+message GetConnectionState {
+  enum BluetoothDeviceState {
+    DISCONNECTED = 0;
+    CONNECTING = 1;
+    CONNECTED = 2;
+    DISCONNECTING = 3;
+  }
+  string remote_id = 1;
+  BluetoothDeviceState state = 2;
+}

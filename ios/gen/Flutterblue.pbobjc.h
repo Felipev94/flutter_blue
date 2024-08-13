@@ -832,6 +832,18 @@ GPB_FINAL @interface ProtosCloseGatt : GPBMessage
 
 @end
 
+#pragma mark - ProtosGetConnectionState
+
+typedef GPB_ENUM(ProtosGetConnectionState_FieldNumber) {
+  ProtosGetConnectionState_FieldNumber_RemoteId = 1,
+};
+
+GPB_FINAL @interface ProtosGetConnectionState : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *remoteId;
+
+@end
+
 NS_ASSUME_NONNULL_END
 
 CF_EXTERN_C_END
