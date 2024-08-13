@@ -24,7 +24,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.google.protobuf'
 
 android {
-    namespace 'com.pauldemarco.flutter_blue'
     compileSdkVersion 31
 
     defaultConfig {
