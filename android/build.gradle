@@ -24,14 +24,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.google.protobuf'
 
 android {
-<<<<<<< HEAD
-    namespace 'com.pauldemarco.flutter_blue'
-    compileSdkVersion 31
-
-=======
     compileSdkVersion 34
     namespace = 'com.pauldemarco.flutter_blue'
->>>>>>> 862976975719e5dada8f0892e6b938f8edf64a6d
     defaultConfig {
         minSdkVersion 19
     }
@@ -60,10 +54,5 @@ protobuf {
 }
 
 dependencies {
-<<<<<<< HEAD
-    implementation 'com.google.protobuf:protobuf-javalite:3.17.3'
-}
-=======
     implementation 'com.google.protobuf:protobuf-javalite:3.21.0'
 }
->>>>>>> 862976975719e5dada8f0892e6b938f8edf64a6d
